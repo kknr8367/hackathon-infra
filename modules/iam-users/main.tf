@@ -23,14 +23,26 @@ resource "aws_iam_user_login_profile" "user_login" {
   for_each = var.users
 
   user                    = aws_iam_user.user[each.key].name
-  password                = "${split("-", each.value.username)[0]}@567"
+  password_length         = 20
   password_reset_required = false
 
   lifecycle {
     ignore_changes = [
       password_reset_required,
+      password_length,
     ]
   }
+}
+
+# Set custom password using AWS CLI after user creation
+resource "null_resource" "set_password" {
+  for_each = var.users
+
+  provisioner "local-exec" {
+    command = "aws iam update-login-profile --user-name ${aws_iam_user.user[each.key].name} --password ${split("-", each.value.username)[0]}@567 --no-password-reset-required"
+  }
+
+  depends_on = [aws_iam_user_login_profile.user_login]
 }
 
 # Create access keys for programmatic access
