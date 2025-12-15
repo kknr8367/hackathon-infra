@@ -34,8 +34,8 @@ participants = {
 # Number of participants per group (default: 3)
 group_size = 3
 
-# Require password reset on first login
-password_reset_required = true
+# Password settings (password is set to "user@567" for all users)
+password_reset_required = false
 
 # Create access keys for programmatic access
 create_access_keys = true

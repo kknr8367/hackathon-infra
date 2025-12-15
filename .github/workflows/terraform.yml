@@ -46,6 +46,11 @@ jobs:
         run: terraform plan -no-color
         continue-on-error: false
  
+      - name: Terraform apply
+        # working-directory: ./environments/dev
+        run: terraform apply -auto-approve -no-color
+        continue-on-error: false
+
       - name: Terraform State List
         # working-directory: ./environments/dev
         run: terraform state list
