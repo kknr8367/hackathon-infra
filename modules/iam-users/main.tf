@@ -49,7 +49,7 @@ resource "aws_iam_user_policy_attachment" "admin_access" {
 
 # Attach region restriction policy to users
 resource "aws_iam_user_policy_attachment" "region_restriction" {
-  for_each = var.region_restriction_policy_arn != "" ? var.users : {}
+  for_each = var.attach_region_restriction ? var.users : {}
 
   user       = aws_iam_user.user[each.key].name
   policy_arn = var.region_restriction_policy_arn

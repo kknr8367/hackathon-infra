@@ -42,6 +42,12 @@ variable "custom_policy_json" {
   default     = ""
 }
 
+variable "attach_region_restriction" {
+  description = "Whether to attach region restriction policy to users"
+  type        = bool
+  default     = true
+}
+
 variable "region_restriction_policy_arn" {
   description = "ARN of the region restriction policy to attach to users"
   type        = string

@@ -138,6 +138,7 @@ module "iam_users" {
   environment                   = var.environment
   password_reset_required       = var.password_reset_required
   create_access_keys            = var.create_access_keys
+  attach_region_restriction     = true
   region_restriction_policy_arn = module.region_restriction_policy.policy_arn
 
   tags = var.additional_tags
