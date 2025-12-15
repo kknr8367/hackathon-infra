@@ -34,19 +34,19 @@ jobs:
         continue-on-error: false
          
       - name: Terraform Init (Dev)
-        working-directory: ./environments/dev
+        # working-directory: ./environments/dev
         run: terraform init
  
       - name: Terraform Validate
-        working-directory: ./environments/dev
+        # working-directory: ./environments/dev
         run: terraform validate
  
       - name: Terraform Plan
-        working-directory: ./environments/dev
+        # working-directory: ./environments/dev
         run: terraform plan -no-color
         continue-on-error: false
  
       - name: Terraform State List
-        working-directory: ./environments/dev
+        # working-directory: ./environments/dev
         run: terraform state list
  
