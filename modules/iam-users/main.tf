@@ -72,7 +72,7 @@ resource "aws_iam_user_policy_attachment" "region_restriction" {
 resource "aws_iam_user_group_membership" "group_membership" {
   for_each = var.users
 
-  user = aws_iam_user.user[each.key].name
+  user   = aws_iam_user.user[each.key].name
   groups = [each.value.group]
 
   depends_on = [aws_iam_user.user]
