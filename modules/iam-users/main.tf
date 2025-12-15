@@ -23,7 +23,8 @@ resource "aws_iam_user_login_profile" "user_login" {
   for_each = var.users
 
   user                    = aws_iam_user.user[each.key].name
-  password_reset_required = var.password_reset_required
+  password                = "${split("-", each.value.username)[0]}@567"
+  password_reset_required = false
 
   lifecycle {
     ignore_changes = [
