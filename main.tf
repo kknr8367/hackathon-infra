@@ -122,6 +122,7 @@ module "iam_groups" {
   groups                        = local.groups_map
   user_group_memberships        = local.user_group_memberships
   attach_custom_policy          = false
+  attach_region_restriction     = true
   region_restriction_policy_arn = module.region_restriction_policy.policy_arn
   use_admin_policy              = !var.use_custom_roles
   role_based_policies           = local.role_based_policy_map

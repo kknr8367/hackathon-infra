@@ -18,7 +18,7 @@ resource "aws_iam_group_policy_attachment" "admin_access" {
 
 # Attach region restriction policy to groups
 resource "aws_iam_group_policy_attachment" "region_restriction" {
-  for_each = var.region_restriction_policy_arn != "" ? var.groups : {}
+  for_each = var.attach_region_restriction ? var.groups : {}
 
   group      = aws_iam_group.group[each.key].name
   policy_arn = var.region_restriction_policy_arn
