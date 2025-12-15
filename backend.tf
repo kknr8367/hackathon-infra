@@ -1,12 +1,11 @@
-# Terraform State Configuration (Optional but Recommended)
-# Uncomment and configure for remote state management
+# Terraform State Configuration
+# Remote state management using S3 backend
 
-# terraform {
-#   backend "s3" {
-#     bucket         = "your-terraform-state-bucket"
-#     key            = "hackathon/terraform.tfstate"
-#     region         = "us-east-1"
-#     encrypt        = true
-#     dynamodb_table = "terraform-state-lock"
-#   }
-# }
+terraform {
+  backend "s3" {
+    bucket  = "terraform-kamalb"
+    key     = "hackathon/terraform.tfstate"
+    region  = "us-east-1"
+    encrypt = true
+  }
+}
