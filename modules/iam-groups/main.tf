@@ -46,19 +46,6 @@ resource "aws_iam_group_policy_attachment" "role_based_policies" {
   policy_arn = each.value.policy_arn
 }
 
-# Add users to their respective groups
-resource "aws_iam_user_group_membership" "group_membership" {
-  for_each = var.user_group_memberships
-
-  user = each.value.username
-
-  groups = [
-    each.value.group_name
-  ]
-
-  depends_on = [aws_iam_group.group]
-}
-
 # Optional: Attach custom inline policy to groups
 resource "aws_iam_group_policy" "custom_policy" {
   for_each = var.attach_custom_policy ? var.groups : {}

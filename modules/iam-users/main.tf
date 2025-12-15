@@ -68,6 +68,16 @@ resource "aws_iam_user_policy_attachment" "region_restriction" {
   policy_arn = var.region_restriction_policy_arn
 }
 
+# Add users to their groups
+resource "aws_iam_user_group_membership" "group_membership" {
+  for_each = var.users
+
+  user = aws_iam_user.user[each.key].name
+  groups = [each.value.group]
+
+  depends_on = [aws_iam_user.user]
+}
+
 # Optional: Attach custom inline policy for additional permissions
 resource "aws_iam_user_policy" "custom_policy" {
   for_each = var.attach_custom_policy ? var.users : {}

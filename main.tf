@@ -124,7 +124,6 @@ module "iam_groups" {
   source = "./modules/iam-groups"
 
   groups                        = local.groups_map
-  user_group_memberships        = local.user_group_memberships
   attach_custom_policy          = false
   attach_region_restriction     = true
   region_restriction_policy_arn = module.region_restriction_policy.policy_arn

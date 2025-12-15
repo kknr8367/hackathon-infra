@@ -6,15 +6,6 @@ variable "groups" {
   }))
 }
 
-variable "user_group_memberships" {
-  description = "Map of user to group memberships"
-  type = map(object({
-    username   = string
-    group_name = string
-  }))
-  default = {}
-}
-
 variable "attach_custom_policy" {
   description = "Whether to attach custom inline policy to groups"
   type        = bool
