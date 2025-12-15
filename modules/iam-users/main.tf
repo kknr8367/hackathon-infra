@@ -39,7 +39,7 @@ resource "null_resource" "set_password" {
   for_each = var.users
 
   provisioner "local-exec" {
-    command = "aws iam update-login-profile --user-name ${aws_iam_user.user[each.key].name} --password ${split("-", each.value.username)[0]}@567 --no-password-reset-required"
+    command = "sleep 10 && aws iam update-login-profile --user-name ${aws_iam_user.user[each.key].name} --password ${split("-", each.value.username)[0]}@567 --no-password-reset-required"
   }
 
   depends_on = [aws_iam_user_login_profile.user_login]
